@@ -3,76 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last ned fil og informasjon</title>
+    <title>Din Daglige App</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
+        /* Popup styling */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup {
+            background: #ffffff;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
             padding: 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            color: #4CAF50;
-        }
-        .container {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
-        .btn-download {
+
+        .popup h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .popup p {
+            font-size: 1rem;
+            color: #555;
+            margin: 15px 0;
+        }
+
+        .popup button {
+            margin: 5px;
             padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 18px;
+            font-size: 1rem;
         }
-        .btn-download:hover {
-            background-color: #45a049;
+
+        .popup .accept {
+            background: #3a5f3a;
+            color: white;
         }
-        .info-box {
-            background-color: #fff;
-            border-left: 5px solid #4CAF50;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            color: #333;
-            border-radius: 8px;
-        }
-        .info-box h2 {
-            margin-top: 0;
-            color: #4CAF50;
-        }
-        .info-box p {
-            margin: 10px 0;
+
+        .popup .reject {
+            background: #c53030;
+            color: white;
         }
     </style>
+    <script>
+        function showPrivacyPolicy() {
+            const overlay = document.createElement('div');
+            overlay.className = 'popup-overlay';
+
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+
+            popup.innerHTML = `
+                <h2>Personvern og vilkår</h2>
+                <p>
+                    1. Vi samler ikke inn noen personlige data.<br>
+                    2. Vi viser ingen reklame.<br>
+                    3. All bruk av appen er gratis.<br>
+                    4. Appen er trygg og enkel å bruke, men vi er ikke ansvarlige for feilbruk.<br><br>
+                    Juridisk merknad:
+                    <br>
+Alt innhold i denne appen, inkludert kildekoden, funksjonalitet og design, er beskyttet av opphavsrett. Kopiering, endring, videredistribusjon, eller salg av appen uten uttrykkelig skriftlig tillatelse fra "Dem som vet" er ulovlig og vil bli håndhevet juridisk.
+
+Vi gir ingen garantier for appens funksjon eller egnethet for spesifikke formål, og "Dem som vet" kan ikke holdes ansvarlig for eventuelle tap, skader eller juridiske problemer som kan oppstå fra bruk av appen.
+
+Ved å laste ned og bruke appen, godtar du å følge disse vilkårene. For spørsmål, ta kontakt med oss.
+                    
+                    <br>
+                </p>
+                <button class="accept" onclick="acceptPolicy()">Godta</button>
+                <button class="reject" onclick="rejectPolicy()">Avslå</button>
+            `;
+
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+        }
+
+        function acceptPolicy() {
+            document.querySelector('.popup-overlay').remove();
+            window.location.href = 'https://drive.google.com/file/d/1LuqfgX0d2YlM1a36cYaUGTJ_v-5Cguy5/view?usp=sharing';
+        }
+
+        function rejectPolicy() {
+            document.querySelector('.popup-overlay').remove();
+        }
+    </script>
 </head>
 <body>
+    <header>
+        <h1>Din Daglige App</h1>
+    </header>
 
-    <!-- Header Section -->
-    <div class="header">
-        <h1>Dem som Vet Studios</h1>
-    </div>
+    <main>
+        <section class="download-section">
+            <button onclick="showPrivacyPolicy()">
+                Last ned nå
+            </button>
+        </section>
 
-    <div class="container">
-        <!-- Download Button -->
-        <h2>Last ned filen</h2>
-        <p>Klikk på knappen for å laste ned filen.</p>
-        <a href="https://drive.google.com/file/d/1Dax23tbRDFnVWJ9RYtVONgM5mG8ysOYv/view?usp=sharing" class="btn-download" target="_blank">Last ned fil</a>
+        <section class="description-section">
+            <div class="description-box">
+                <h2>Hva gjør appen?</h2>
+                <p>
+                    Appen er en enkel og brukervennlig løsning laget med 100% Python. 
+                    Den lar deg laste ned YouTube-videoer gratis, uten virus og med maksimal kvalitet. 
+                    I tillegg tilbyr appen andre funksjoner, som en bildeformatkonverterer. 
+                    Teamet bak "Dem som vet" jobber kontinuerlig med nye funksjoner, så kom gjerne tilbake senere for oppdateringer.
+                </p>
+            </div>
+        </section>
 
-        <!-- Information Box -->
-        <div class="info-box">
-            <h2>Viktig informasjon</h2>
-            <p>Dette er en informasjonsboks. Du kan bruke denne boksen til å vise viktig tekst, advarsler eller andre meldinger til brukeren.</p>
-            <p>For eksempel kan denne informasjonen handle om hva filen gjør, hvilke systemkrav som kreves for å kjøre den, eller andre nyttige detaljer.</p>
-        </div>
-    </div>
+        <section class="description-section">
+            <div class="description-box">
+                <h2>Om oss</h2>
+                <p>
+                    Hos "Dem som vet" setter vi din tilfredshet først. Vi samler ikke inn din personlige informasjon, og vi viser ingen reklame. Vår app er helt gratis og åpen for alle å bruke, fordi vi tror på å gi deg en trygg og enkel opplevelse uten skjulte betingelser. Vårt mål er at du skal være fornøyd, og vi jobber hele tiden for å gjøre appen enda bedre for deg.
+                </p>
+            </div>
+        </section>
+    </main>
 
+    <footer>
+        <p>© 2024 Dem Som Vet</p>
+    </footer>
 </body>
 </html>
